@@ -1,59 +1,68 @@
-
+<!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head th:replace="fragments/head"/>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- Navbar -->
 <div th:replace="fragments/navbar">Navbar</div>
-<body>
 
+<!-- Main Content -->
+<main class="container mt-4">
+	<!-- Product Description -->
+	<section class="product-description mt-auto py-3 bg-light">
+		<div class="container">
+			<h2 class="section-title">Скоростная передача электронных документов</h2>
+			<p>
+				Скоростная передача электронных документов — это инновационное облачное хранилище, специально разработанное для максимально эффективной передачи и хранения электронных документов. Наше облачное хранилище обеспечивает высокую скорость передачи данных и безопасное хранение информации в облаке.
+			</p>
+			<h3>Особенности:</h3>
+			<ul>
+				<li><strong>Высокая скорость передачи данных:</strong> <em>Мы гарантируем мгновенную передачу ваших документов без задержек и перебоев.</em></li>
+				<li><strong>Безопасное облачное хранение:</strong> <em>Все ваши электронные документы хранятся в безопасном облачном пространстве с использованием передовых технологий шифрования.</em></li>
+				<li><strong>Простота использования:</strong> <em>Наше облачное хранилище обладает интуитивно понятным интерфейсом, что делает работу с ним максимально удобной и эффективной.</em></li>
+				<li><strong>Масштабируемость:</strong> <em>Независимо от размера вашего бизнеса или объема документов, наше облачное хранилище легко масштабируется и готово к росту вашей компании.</em></li>
+			</ul>
+		</div>
+	</section>
 
-<main class="flex-shrink-0">
-	<div class="container mt-4">
-		<div class="row row-cols-1 row-cols-md-3 g-4">
-			<!-- Loop through all offers and create a card for each -->
-			<div>
-				<ul>
-					<li th:each="file : ${files}">
-						<a th:href="${file}" th:text="${file}" />
-					</li>
-				</ul>
-			</div>
-			<div>
+	<div class="row row-cols-1 g-4">
+
+		<!-- File Upload Section -->
+		<div class="col">
+			<section class="upload-section">
+				<h2 class="section-title">Upload File</h2>
 				<form method="POST" enctype="multipart/form-data" action="/">
-					<table>
-						<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-						<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-					</table>
+					<div class="mb-3">
+						<label for="fileUpload" class="form-label">Choose a file:</label>
+						<input type="file" class="form-control" id="fileUpload" name="file" />
+					</div>
+					<button type="submit" class="btn btn-primary">Upload</button>
 				</form>
-			</div>
+			</section>
+		</div>
 
-			<div th:each="file : ${files}" class="col">
-				<div class="card">
-					<img  th:src="${file}" class="card-img-top" alt="Offer Image">
-					<div class="card-body">
-						<h5 class="card-title" th:text="${file.toString()}"></h5>
-						<p class="card-text">
-							<strong>Posted by:</strong>
-<!--							<a th:href="@{/users/details/{userName}(userName=${offer.user.userName})}" class="btn btn-outline-secondary btn-circle" style="margin-left: 10px" th:text="${offer.user.userName}" th:alt="UserName">-->
-							<i class="fa fa-arrow-right"></i>
-
-							<!-- Add more details as needed -->
-						</p>
-						<a th:href="${file}" th:text="Downoload" />
-						<a th:href="@{{file}/delete(file=${file})}">Delete</a>
-						<div class="d-flex justify-content-end align-items-center">
-<!--							<a th:href="@{/offers/details/{id}(id=${offer.id})}" class="btn btn-primary mr-2" th:alt="url">View Details</a>-->
-<!--							<a th:href="@{/models/details/{name}(name=${offer.model.name})}" class="btn btn-primary mr-2" style="margin-left: 10px" th:alt="url">About model</a>-->
-
-						</div>
+		<!-- File List Section -->
+		<div th:each="file : ${files}" class="col">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title" th:text="${file.toString()}"></h5>
+					<p class="card-text">
+						<strong>Posted by:</strong> <!-- Add more details as needed -->
+					</p>
+					<div class="button-group">
+						<a th:href="${file}" class="btn btn-primary">Download</a>
+						<a th:href="@{{file}/delete(file=${file})}" class="btn btn-danger">Delete</a>
 					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
 </main>
 
-
-
-
+<!-- Footer -->
 <footer th:replace="fragments/footer"/>
+
+
 </body>
 </html>
