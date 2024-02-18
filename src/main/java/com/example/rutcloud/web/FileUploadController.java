@@ -51,7 +51,7 @@ public class FileUploadController {
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
-    @DeleteMapping("/files/{filename:.+}/delete")
+    @GetMapping("/files/{filename:.+}/delete")
     @ResponseBody
     public String deleteFile(@PathVariable String filename) throws IOException {
        storageService.deleteFileByName(filename);
