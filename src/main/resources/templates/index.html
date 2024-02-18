@@ -1,0 +1,59 @@
+
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/head"/>
+<div th:replace="fragments/navbar">Navbar</div>
+<body>
+
+
+<main class="flex-shrink-0">
+	<div class="container mt-4">
+		<div class="row row-cols-1 row-cols-md-3 g-4">
+			<!-- Loop through all offers and create a card for each -->
+			<div>
+				<ul>
+					<li th:each="file : ${files}">
+						<a th:href="${file}" th:text="${file}" />
+					</li>
+				</ul>
+			</div>
+			<div>
+				<form method="POST" enctype="multipart/form-data" action="/">
+					<table>
+						<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+						<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+					</table>
+				</form>
+			</div>
+
+			<div th:each="file : ${files}" class="col">
+				<div class="card">
+					<img  th:src="${file}" class="card-img-top" alt="Offer Image">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${file.toString()}"></h5>
+						<p class="card-text">
+							<strong>Posted by:</strong>
+<!--							<a th:href="@{/users/details/{userName}(userName=${offer.user.userName})}" class="btn btn-outline-secondary btn-circle" style="margin-left: 10px" th:text="${offer.user.userName}" th:alt="UserName">-->
+							<i class="fa fa-arrow-right"></i>
+
+							<!-- Add more details as needed -->
+						</p>
+						<a th:href="${file}" th:text="Downoload" />
+						<a th:href="@{{file}/delete(file=${file})}">Delete</a>
+						<div class="d-flex justify-content-end align-items-center">
+<!--							<a th:href="@{/offers/details/{id}(id=${offer.id})}" class="btn btn-primary mr-2" th:alt="url">View Details</a>-->
+<!--							<a th:href="@{/models/details/{name}(name=${offer.model.name})}" class="btn btn-primary mr-2" style="margin-left: 10px" th:alt="url">About model</a>-->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+
+
+
+<footer th:replace="fragments/footer"/>
+</body>
+</html>
