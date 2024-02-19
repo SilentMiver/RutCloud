@@ -52,7 +52,7 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
     @GetMapping("/files/{filename:.+}/delete")
-    @ResponseBody
+
     public String deleteFile(@PathVariable String filename) throws IOException {
        storageService.deleteFileByName(filename);
         return "redirect:/";
