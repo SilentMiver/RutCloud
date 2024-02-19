@@ -63,6 +63,7 @@ public class FileUploadController {
 
     public String deleteFile(@PathVariable String filename) throws IOException {
         storageService.deleteFileByName(filename);
+        shortUrlService.deleteByUrl(filename);
 
         return "redirect:/";
     }

@@ -23,11 +23,28 @@ public class ShortUrlServiceImpl implements ShortUrlService {
 
     @Override
     public String getByShortUrl(String shortUrl) {
-            String value = jedis.get(shortUrl);
-            System.out.println("Значение по ключу " + shortUrl + ": " + value);
-            jedis.close();
+        String value = jedis.get(shortUrl);
+        System.out.println("Значение по ключу " + shortUrl + ": " + value);
+        jedis.close();
 
-            return value;
+        return value;
+
+
+    }
+
+    @Override
+    public void deleteByShortUrl(String shortUrl) {
+        jedis.del(shortUrl);
+        jedis.close();
+    }
+
+    @Override
+    public void deleteByUrl(String url) {
+        deleteByShortUrl(
+                Hashing.murmur3_32()
+                        .hashString(url, Charset.defaultCharset())
+                        .toString()
+        );
 
 
     }
