@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 import com.example.rutcloud.config.exceptions.StorageFileNotFoundException;
+import com.example.rutcloud.services.ShortUrlService;
 import com.example.rutcloud.services.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -21,10 +22,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class FileUploadController {
 
     private final StorageService storageService;
+    private ShortUrlService shortUrlService;
 
     @Autowired
-    public FileUploadController(StorageService storageService) {
+    public FileUploadController(StorageService storageService, ShortUrlService shortUrlService) {
         this.storageService = storageService;
+        this.shortUrlService = shortUrlService;
     }
 
     @GetMapping("/")
@@ -48,6 +51,13 @@ public class FileUploadController {
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
+    @GetMapping("/{id:.+}")
+    public String getFileByShortUrl(@PathVariable String id){
+        var value = shortUrlService.getByShortUrl(id);
+
+
+        return "redirect:/files/" + value;
+    }
 
     @GetMapping("/files/{filename:.+}/delete")
 
@@ -59,6 +69,7 @@ public class FileUploadController {
 
     @PostMapping("/")
     public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+        shortUrlService.addShortUrlToRedis(file.getOriginalFilename());
         storageService.store(file);
 
         return "redirect:/";

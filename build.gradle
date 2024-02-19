@@ -18,6 +18,9 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'redis.clients:jedis:5.1.0'
+    implementation 'com.google.guava:guava:33.0.0-jre'
+
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 
 
