@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-
 @Controller
 public class FileUploadController {
 
@@ -30,7 +29,6 @@ public class FileUploadController {
 
     @GetMapping("/")
     public String listUploadedFiles(Model model) throws IOException {
-
         model.addAttribute("files", storageService.loadAll().map(
                         path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
                                 "serveFile", path.getFileName().toString()).build().toUri().toString())
@@ -42,7 +40,6 @@ public class FileUploadController {
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-
         Resource file = storageService.loadAsResource(filename);
 
         if (file == null)
@@ -51,18 +48,18 @@ public class FileUploadController {
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
+
     @GetMapping("/files/{filename:.+}/delete")
 
     public String deleteFile(@PathVariable String filename) throws IOException {
-       storageService.deleteFileByName(filename);
+        storageService.deleteFileByName(filename);
+
         return "redirect:/";
     }
 
     @PostMapping("/")
     public String handleFileUpload(@RequestParam("file") MultipartFile file) {
-
         storageService.store(file);
-
 
         return "redirect:/";
     }
@@ -72,5 +69,4 @@ public class FileUploadController {
     public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
         return ResponseEntity.notFound().build();
     }
-
 }
