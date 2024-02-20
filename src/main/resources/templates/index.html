@@ -3,11 +3,25 @@
 <head th:replace="fragments/head"/>
 <body class="d-flex flex-column min-vh-100">
 
+
+
+
 <!-- Navbar -->
 <div th:replace="fragments/navbar">Navbar</div>
 
 <!-- Main Content -->
 <main class="container mt-4">
+	<script>
+		function myFunction(short_url) {
+
+			navigator.clipboard.writeText(short_url.innerText).then(function() {
+				console.log(`Текст успешно скопирован в буфер обмена (${short_url.innerText})`);
+			}, function(err) {
+				console.error('Произошла ошибка при копировании текста: ', err);
+			});
+		}
+
+	</script>
 	<!-- Product Description -->
 	<section class="product-description mt-auto py-3 bg-light">
 		<div class="container">
@@ -45,13 +59,15 @@
 		<div th:each="file : ${files}" class="col">
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title" th:text="${file.toString()}"></h5>
+					<h5 class="card-title" th:text="${file.toString()}" id="short_url"></h5>
 					<p class="card-text">
 						<strong>Posted by:</strong> <!-- Add more details as needed -->
 					</p>
 					<div class="button-group">
 						<a th:href="${file}" class="btn btn-primary">Download</a>
 						<a th:href="@{{file}/delete(file=${file})}" class="btn btn-danger">Delete</a>
+						<button onclick="myFunction(document.getElementById('short_url'))">Copy</button>
+							<link rel="stylesheet" href="">
 					</div>
 				</div>
 			</div>
