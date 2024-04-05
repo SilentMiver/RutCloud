@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RutCloud</title>
+    <title>RutCloud | Отправить файл</title>
 
     <style>
         body {
@@ -38,6 +38,38 @@
             width: 150px;
             height: 150px;
         }
+
+        .qrcode p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .qrcode input {
+            width: 200px;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .qrcode a {
+            display: inline-block;
+            text-align: center;
+            width: 50px;
+            padding: 11px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #00c62e;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .qrcode a:hover {
+            background-color: #00af29;
+        }
     </style>
 </head>
 
@@ -49,6 +81,9 @@
     </div>
     <div class="qrcode">
         <p>Отсканируйте QR-code для отправления файлов</p>
+        <p>Или введите короткую ссылку</p>
+        <input type="text" id="shortlink" placeholder="Введите ссылку:">
+        <a href="/">Далее</a>
     </div>
 </div>
 </body>

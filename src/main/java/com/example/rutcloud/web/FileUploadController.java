@@ -113,12 +113,12 @@ public class FileUploadController {
         return "home";
     }
 
-    @GetMapping("/send")
+    @GetMapping("/send_file")
     public String sendFilePage() {
         return "send_file";
     }
 
-    @GetMapping("/get")
+    @GetMapping("/get_file")
     public String getFilePage() {
         return "get_file";
     }
