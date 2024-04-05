@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
@@ -101,6 +100,29 @@ public class FileUploadController {
                 .path(filename)
                 .toUriString();
     }
+
+    @ExceptionHandler(StorageFileNotFoundException.class)
+    public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
+        return ResponseEntity.notFound().build();
+    }
+
+
+    // kottzi натворил говна:
+    @GetMapping("/home")
+    public String homePage() {
+        return "home";
+    }
+
+    @GetMapping("/send")
+    public String sendFilePage() {
+        return "send_file";
+    }
+
+    @GetMapping("/get")
+    public String getFilePage() {
+        return "get_file";
+    }
+
     @GetMapping("/qr-code")
     public ResponseEntity<byte[]> showQRCode() {
         byte[] qrCodeImage;
@@ -119,9 +141,5 @@ public class FileUploadController {
             // Обработка ошибок генерации QR-кода
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-    @ExceptionHandler(StorageFileNotFoundException.class)
-    public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
-        return ResponseEntity.notFound().build();
     }
 }

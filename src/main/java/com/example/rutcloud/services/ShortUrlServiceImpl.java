@@ -8,7 +8,7 @@ import java.nio.charset.Charset;
 
 @Service
 public class ShortUrlServiceImpl implements ShortUrlService {
-    Jedis jedis = new Jedis("localhost", 6379);
+    Jedis jedis = new Jedis("localhost", 6380);
 
     @Override
     public void addShortUrlToRedis(String url) {
