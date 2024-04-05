@@ -27,6 +27,11 @@ dependencies {
     implementation 'com.google.zxing:core:3.4.1' // Или более новая версия
     implementation 'com.google.zxing:javase:3.4.1' // Или более новая версия
 
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.xerial:sqlite-jdbc:3.36.0.3' // Зависимость для JDBC драйвера SQLite
+    runtimeOnly 'com.h2database:h2' // Необходимо для работы с JPA, но можно исключить, если не используется
+
+
 }
 
 tasks.named('test') {
