@@ -1,18 +1,18 @@
 version: '3.8'
 
 services:
-#  redis:
-#    image: redis:latest
-#    container_name: redis-for-rut-cloud
-#    ports:
-#      - "6379:6379"
-#    restart: always
-  sqlite:
-    image: alpine
-    volumes:
-      - ./data:/data
-    command: >
-      sh -c "
-        apk add --no-cache sqlite;
-        sqlite3 /data/database.sqlite;
-      "
+  redis:
+    image: redis:latest
+    container_name: redis-for-rut-cloud
+    ports:
+      - "6379:6379"
+    restart: always
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: rutcloud_files
+      POSTGRES_USER: rutuser
+      POSTGRES_PASSWORD: miit
+    ports:
+      - "5432:5432"
