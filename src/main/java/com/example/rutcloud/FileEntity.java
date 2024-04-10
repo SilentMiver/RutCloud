@@ -1,6 +1,5 @@
 package com.example.rutcloud;
 
-
 import jakarta.persistence.*;
 
 @Entity
@@ -15,29 +14,30 @@ public class FileEntity {
 
     @Lob
     private byte[] data;
+
     @ManyToOne
     @JoinColumn(name = "session_id")
     private Session session;
 
-    public FileEntity(Long id, String fileName, byte[] data) {
-        this.id = id;
-        this.fileName = fileName;
-        this.data = data;
-    }
+    // Constructors, getters, and setters
 
     public FileEntity() {
     }
 
-    public Session getSession() {
-        return session;
-    }
-
-    public void setSession(Session session) {
+    public FileEntity(String fileName, byte[] data, Session session) {
+        this.fileName = fileName;
+        this.data = data;
         this.session = session;
     }
 
+    // Getters and setters
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFileName() {
@@ -56,8 +56,11 @@ public class FileEntity {
         this.data = data;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
     }
 }
-

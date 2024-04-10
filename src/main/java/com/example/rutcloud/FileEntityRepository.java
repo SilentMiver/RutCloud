@@ -2,6 +2,6 @@ package com.example.rutcloud;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SessionRepository extends JpaRepository<Session, Long> {
+public interface FileEntityRepository extends JpaRepository<FileEntity, Long> {
 }
 
