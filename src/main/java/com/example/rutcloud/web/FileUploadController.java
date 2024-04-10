@@ -21,6 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
 import java.util.stream.Collectors;
+@Deprecated
 
 @Controller
 public class FileUploadController {

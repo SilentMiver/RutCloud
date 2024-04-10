@@ -35,6 +35,9 @@ public class Session {
     public void setFiles(List<FileEntity> files) {
         this.files = files;
     }
+
+    public Session() {
+    }
 }
 
 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h1>File Upload Page</h1>
+
+<form id="fileUploadForm" enctype="multipart/form-data">
+    <input type="file" name="file" id="fileInput" multiple>
+    <input type="submit" value="Upload File">
+</form>
+
+<h2>Uploaded Files</h2>
+<ul id="fileList"></ul>
+
+<script>
+    // Функция для загрузки файлов через AJAX
+    $('#fileUploadForm').submit(function(event) {
+        event.preventDefault();
+
+        var formData = new FormData($(this)[0]);
+
+        $.ajax({
+            url: '/upload', // Путь к обработчику на сервере
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                // Обработка успешного ответа
+                alert('File uploaded successfully!');
+                loadFiles(); // Обновляем список файлов после загрузки
+            },
+            error: function(xhr, status, error) {
+                // Обработка ошибки
+                alert('Error uploading file: ' + error);
+            }
+        });
+    });
+
+    // Функция для загрузки списка файлов через AJAX
+    function loadFiles() {
+        $.ajax({
+            url: '/files', // Путь к обработчику на сервере
+            type: 'GET',
+            success: function(response) {
+                // Обработка успешного ответа
+                displayFiles(response);
+            },
+            error: function(xhr, status, error) {
+                // Обработка ошибки
+                alert('Error loading files: ' + error);
+            }
+        });
+    }
+
+    // Функция для отображения списка файлов
+    function displayFiles(files) {
+        $('#fileList').empty();
+        $.each(files, function(index, file) {
+            $('#fileList').append('<li><a href="/download/' + file.id + '">' + file.fileName + '</a></li>');
+        });
+    }
+
+    // Вызываем функцию загрузки файлов при загрузке страницы
+    $(document).ready(function() {
+        loadFiles();
+    });
+</script>
+
+</body>
+</html>

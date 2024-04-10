@@ -7,12 +7,27 @@ services:
     ports:
       - "6379:6379"
     restart: always
-  db:
-    image: postgres
-    restart: always
+
+  postgres:
+    image: postgres:latest
     environment:
-      POSTGRES_DB: rutcloud_files
-      POSTGRES_USER: rutuser
-      POSTGRES_PASSWORD: miit
+      POSTGRES_DB: "rutcloud"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "1234"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+#    volumes:
+#      - ./db/:/docker-entrypoint-initdb.d # Используем init.sql для инициализации базы данных
+#      - ./data:/data # Монтируем директорию с данными
+    command: ["postgres", "-c", "log_statement=all"]
     ports:
       - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "5050:5050"
+    depends_on:
+      - postgres

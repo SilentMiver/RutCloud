@@ -1,7 +1,7 @@
 package com.example.rutcloud.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
+@Deprecated
 @ConfigurationProperties("storage")
 public class StorageProperties {
 
