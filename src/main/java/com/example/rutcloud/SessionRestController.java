@@ -28,7 +28,8 @@ public class SessionRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Session> createSession(@RequestBody Session session) {
+    public ResponseEntity<Session> createSession() {
+        var session = new Session();
         Session createdSession = sessionRepository.save(session);
         return new ResponseEntity<>(createdSession, HttpStatus.CREATED);
     }

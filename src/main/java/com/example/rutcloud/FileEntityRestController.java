@@ -1,7 +1,8 @@
-package com.example.rutcloud.config.exceptions;
+package com.example.rutcloud;
 
 import com.example.rutcloud.FileEntity;
 import com.example.rutcloud.FileEntityRepository;
+import com.example.rutcloud.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -20,6 +21,8 @@ public class FileEntityRestController {
 
     @Autowired
     private FileEntityRepository fileEntityRepository;
+    @Autowired
+    private SessionRepository sessionRepository;
 
     @GetMapping
     public List<FileEntity> getAllFileEntities() {
@@ -32,6 +35,7 @@ public class FileEntityRestController {
         return fileEntityOptional.map(fileEntity -> new ResponseEntity<>(fileEntity, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Resource> downloadFile(@PathVariable Long id) {
         Optional<FileEntity> fileEntityOptional = fileEntityRepository.findById(id);
@@ -76,8 +80,10 @@ public class FileEntityRestController {
         fileEntityRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestBody byte[] fileData, @RequestParam("fileName") String fileName) {
+    public ResponseEntity<String> uploadFile(@RequestBody byte[] fileData, @RequestParam("fileName") String fileName,
+                                             @RequestParam Long session) {
         if (fileData == null || fileData.length == 0) {
             return new ResponseEntity<>("File is empty", HttpStatus.BAD_REQUEST);
         }
@@ -86,6 +92,7 @@ public class FileEntityRestController {
             FileEntity fileEntity = new FileEntity();
             fileEntity.setFileName(fileName);
             fileEntity.setData(fileData);
+            fileEntity.setSession(sessionRepository.findById(session).get());
 
             fileEntityRepository.save(fileEntity);
 

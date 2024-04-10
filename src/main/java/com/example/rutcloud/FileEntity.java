@@ -1,6 +1,7 @@
 package com.example.rutcloud;
 
 import jakarta.persistence.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 @Entity
 @Table(name = "files")
