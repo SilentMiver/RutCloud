@@ -13,7 +13,7 @@ services:
     environment:
       POSTGRES_DB: "rutcloud_files"
       POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "1234"
+      POSTGRES_PASSWORD: "postgres"
       PGDATA: "/var/lib/postgresql/data/pgdata"
 #    volumes:
 #      - ./db/:/docker-entrypoint-initdb.d # Используем init.sql для инициализации базы данных

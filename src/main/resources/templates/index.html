@@ -1,79 +1,65 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
-<head th:replace="fragments/head"/>
-<body class="d-flex flex-column min-vh-100">
-
-<!-- Navbar -->
-<div th:replace="fragments/navbar">Navbar</div>
-
-<!-- Main Content -->
-<main class="container mt-4">
-	<script>
-		function myFunction(short_url) {
-			navigator.clipboard.writeText(short_url.innerText).then(function() {
-				console.log(`Текст успешно скопирован в буфер обмена (${short_url.innerText})`);
-			}, function(err) {
-				console.error('Произошла ошибка при копировании текста: ', err);
-			});
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>RUT CLOUD-SHARE</title>
+	<style>
+		body {
+			font-family: 'Arial', sans-serif;
+			background: linear-gradient(to right top, #051937, #004d7a, #008793, #6610f2, #a8eb12); /* Градиентный фон */
+			color: #ffffff; /* Белый текст */
+			margin: 0;
+			padding: 20px;
+			box-sizing: border-box;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			text-align: center;
 		}
-		// Функция для обработки события сканирования QR-кода
-		function handleQRCodeScan(qrCodeValue) {
-			// Отправка AJAX-запроса на сервер с данными QR-кода
-			$.ajax({
-				url: '/files/' + qrCodeValue, // Путь к обработчику запроса на сервере
-				type: 'GET',
-				success: function(response) {
-					// Обработка успешного ответа от сервера
-					console.log('QR Code scanned successfully:', response);
-				},
-				error: function(xhr, status, error) {
-					// Обработка ошибок
-					console.error('Error scanning QR Code:', error);
-				}
-			});
+
+		h1 {
+			font-size: 48px;
+			margin-bottom: 30px;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Тень для заголовка */
 		}
-	</script>
-	<!-- QR Code Section -->
-	<section class="qr-code-section">
-		<h2 class="section-title">QR Code</h2>
-		<img src="/qr-code" alt="QR Code">
-	</section>
 
-	<!-- File Upload Section -->
-	<section class="upload-section mt-4">
-		<h2 class="section-title">Upload File</h2>
-		<form method="POST" enctype="multipart/form-data" action="/">
-			<div class="mb-3">
-				<label for="fileUpload" class="form-label">Choose a file:</label>
-				<input type="file" class="form-control" id="fileUpload" name="file" />
-			</div>
-			<button type="submit" class="btn btn-primary">Upload</button>
-		</form>
-	</section>
+		button {
+			padding: 15px 30px;
+			margin: 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: #1565c0; /* Голубой цвет для кнопки */
+			color: #ffffff; /* Белый текст */
+			font-size: 18px;
+			font-weight: bold;
+			text-transform: uppercase;
+			cursor: pointer;
+			transition: background-color 0.3s ease, transform 0.2s ease;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для кнопки */
+		}
 
-	<!-- File List Section -->
-	<div class="row row-cols-1 g-4">
-		<div th:each="file : ${files}" class="col">
-			<div class="card">
-				<div class="card-body">
-					<h5 class="card-title" th:text="${file.toString()}" id="short_url"></h5>
-					<p class="card-text">
-						<strong>Posted by:</strong> <!-- Add more details as needed -->
-					</p>
-					<div class="button-group">
-						<a th:href="${file}" class="btn btn-primary">Download</a>
-						<a th:href="@{{file}/delete(file=${file})}" class="btn btn-danger">Delete</a>
-						<button onclick="myFunction(document.getElementById('short_url'))">Copy</button>
-						<link rel="stylesheet" href="">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</main>
+		button:hover {
+			background-color: #0d47a1; /* Темнее голубой цвет при наведении на кнопку */
+			transform: translateY(-2px); /* Эффект поднятия при наведении */
+		}
 
-<!-- Footer -->
-<footer th:replace="fragments/footer"/>
+		button:focus {
+			outline: none; /* Убираем обводку при фокусе */
+		}
+	</style>
+</head>
+<body>
+<h1>RUT CLOUD-SHARE</h1>
+
+<button onclick="openFilesPage()">Отправить</button>
+<button onclick="openFilesPage()">Получить</button>
+
+<script>
+	function openFilesPage() {
+		window.location.href = "/files";
+	}
+</script>
 
 </body>
 </html>

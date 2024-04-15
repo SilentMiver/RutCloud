@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,35 +25,50 @@ public class FileEntityRestController {
     @Autowired
     private SessionRepository sessionRepository;
 
+    @Autowired
+    private SessionRestController sessionRestController;
+
     @GetMapping
     public List<FileEntity> getAllFileEntities() {
         return fileEntityRepository.findAll();
     }
 
     @GetMapping("/rest/{id}")
-    public ResponseEntity<FileEntity> getFileEntityById(@PathVariable Long id) {
-        Optional<FileEntity> fileEntityOptional = fileEntityRepository.findById(id);
-        return fileEntityOptional.map(fileEntity -> new ResponseEntity<>(fileEntity, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable Long id) {
+    public ResponseEntity<FileEntity> getFileEntityById(@PathVariable Long id, @RequestParam Long session) {
         Optional<FileEntity> fileEntityOptional = fileEntityRepository.findById(id);
         if (fileEntityOptional.isPresent()) {
             FileEntity fileEntity = fileEntityOptional.get();
-            ByteArrayResource resource = new ByteArrayResource(fileEntity.getData());
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileEntity.getFileName());
-            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-
-            return ResponseEntity.ok()
-                    .headers(headers)
-                    .contentLength(fileEntity.getData().length)
-                    .body(resource);
+            // Проверяем, имеет ли пользователь доступ к файлу через сеанс
+            if (fileEntity.getSession().getId().equals(session)) {
+                return new ResponseEntity<>(fileEntity, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); // Отказано в доступе
+            }
         } else {
-            return ResponseEntity.notFound().build();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable Long id, @RequestParam Long session) {
+        Optional<FileEntity> fileEntityOptional = fileEntityRepository.findById(id);
+        if (fileEntityOptional.isPresent()) {
+            FileEntity fileEntity = fileEntityOptional.get();
+            // Проверяем, имеет ли пользователь доступ к файлу через сеанс
+            if (fileEntity.getSession().getId().equals(session)) {
+                ByteArrayResource resource = new ByteArrayResource(fileEntity.getData());
+                HttpHeaders headers = new HttpHeaders();
+                headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileEntity.getFileName());
+                headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+                return ResponseEntity.ok()
+                        .headers(headers)
+                        .contentLength(fileEntity.getData().length)
+                        .body(resource);
+            } else {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); // Отказано в доступе
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -82,17 +98,28 @@ public class FileEntityRestController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestBody byte[] fileData, @RequestParam("fileName") String fileName,
-                                             @RequestParam Long session) {
-        if (fileData == null || fileData.length == 0) {
-            return new ResponseEntity<>("File is empty", HttpStatus.BAD_REQUEST);
+    public ResponseEntity<String> uploadFile(@RequestParam("fileData") MultipartFile file,
+                                             @RequestParam("fileName") String fileName,
+                                             @RequestParam("session") Long sessionId) {
+
+        // Проверяем существование указанной сессии через SessionRestController
+        ResponseEntity<Session> sessionResponse = sessionRestController.getSessionById(sessionId);
+        if (sessionResponse.getStatusCode() != HttpStatus.OK) {
+            return new ResponseEntity<>("Invalid session ID", HttpStatus.UNAUTHORIZED);
         }
 
+        // Продолжаем с загрузкой файла
         try {
+            if (file.isEmpty()) {
+                return new ResponseEntity<>("File is empty", HttpStatus.BAD_REQUEST);
+            }
+
+            byte[] fileData = file.getBytes();
+
             FileEntity fileEntity = new FileEntity();
             fileEntity.setFileName(fileName);
             fileEntity.setData(fileData);
-            fileEntity.setSession(sessionRepository.findById(session).get());
+            fileEntity.setSession(sessionResponse.getBody()); // Устанавливаем сессию
 
             fileEntityRepository.save(fileEntity);
 
