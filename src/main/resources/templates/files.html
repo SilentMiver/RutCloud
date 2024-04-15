@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>RUT CLOUD-SHARE</title>
@@ -128,10 +128,17 @@
     <td th:text="${file.fileName}"></td>
     <td>
       <!-- Проверяем, имеет ли текущий сеанс доступ к файлу -->
-      <span th:if="${file.session.id eq session}" >
-                <a th:href="@{'/api/files/' + ${file.id}}" style="color: #00bf72;">Download</a>
+      <span >
+                <a th:href="@{'/api/files/' + ${file.id}} + '?session=' + ${session_number}" style="color: #00bf72;">Download</a>
             </span>
-      <span th:unless="${file.session.id eq session}" style="color: #ff3333;">Access Denied</span>
+
+    <br>
+     <!-- New column for delete button -->
+      <span style="margin-all = 10px">
+      <form method="post" th:action="@{'/api/files/delete/' + ${file.id}}">
+        <button type="submit" style="color: #bf0000;">Delete</button>
+      </form>
+        </span>
     </td>
   </tr>
   </tbody>

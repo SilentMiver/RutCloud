@@ -88,8 +88,16 @@ public class FileEntityRestController {
         return new ResponseEntity<>(updatedFileEntity, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFileEntity(@PathVariable Long id) {
+//    @DeleteMapping("/delete/{id}")
+//    public ResponseEntity<Void> deleteFileEntity(@PathVariable Long id) {
+//        if (!fileEntityRepository.existsById(id)) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        fileEntityRepository.deleteById(id);
+//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//    }
+    @PostMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteFile(@PathVariable Long id) {
         if (!fileEntityRepository.existsById(id)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
