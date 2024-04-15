@@ -50,10 +50,17 @@
     }
 
     td a {
-      color: #00bf72; /* Зеленый цвет для ссылок */
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s ease;
+    }
+
+    td a.download-link {
+      color: #00bf72; /* Зеленый цвет для ссылки "Download" */
+    }
+
+    td a.delete-link {
+      color: #bf0000; /* Красный цвет для ссылки "Delete" */
     }
 
     td a:hover {
@@ -94,6 +101,30 @@
       outline: none; /* Убираем обводку при фокусе */
     }
 
+    /* Стили для кнопки Delete */
+    .delete-button {
+      padding: 15px;
+      margin-left: 10px; /* Отступ слева от кнопки */
+      border: none;
+      border-radius: 5px;
+      background-color: #bf0000; /* Красный цвет для кнопки "Delete" */
+      color: #ffffff; /* Белый текст */
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .delete-button:hover {
+      background-color: #990000; /* Темнее красный цвет при наведении на кнопку */
+      transform: translateY(-2px); /* Эффект поднятия при наведении */
+    }
+
+    .delete-button:focus {
+      outline: none; /* Убираем обводку при фокусе */
+    }
+
     ::-webkit-input-placeholder {
       color: #ffffff; /* Цвет placeholder для WebKit браузеров */
     }
@@ -128,17 +159,14 @@
     <td th:text="${file.fileName}"></td>
     <td>
       <!-- Проверяем, имеет ли текущий сеанс доступ к файлу -->
-      <span >
-                <a th:href="@{'/api/files/' + ${file.id}} + '?session=' + ${session_number}" style="color: #00bf72;">Download</a>
-            </span>
+      <span>
+        <a th:href="@{'/api/files/' + ${file.id}} + '?session=' + ${session_number}" class="download-link">Download</a>
+      </span>
 
-    <br>
-     <!-- New column for delete button -->
-      <span style="margin-all = 10px">
+      <!-- Кнопка Delete -->
       <form method="post" th:action="@{'/api/files/delete/' + ${file.id}}">
-        <button type="submit" style="color: #bf0000;">Delete</button>
+        <button type="submit" class="delete-button">Delete</button>
       </form>
-        </span>
     </td>
   </tr>
   </tbody>

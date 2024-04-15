@@ -31,4 +31,10 @@ public class HomeController {
         return "files";
     }
 
+
+    @GetMapping("/get")
+    public String get() {
+        return "get";
+    }
+
 }
