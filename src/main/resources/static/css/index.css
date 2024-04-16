@@ -1,37 +1,4 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right top, #051937, #004d7a, #008793, #6610f2, #a8eb12);
-    color: white;
-    margin: 0;
-    padding: 25px;
-    box-sizing: border-box;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
-}
-
-.container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-img {
-    width: 200px;
-    height: 200px;
-}
-
-h1 {
-    position: relative;
-    font-size: 48px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    margin: 0;
-    bottom: 25px;
-}
-
-button {
+.content button {
     width: 200px;
     padding: 15px 30px;
     margin: 10px;
@@ -46,22 +13,22 @@ button {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
+.content button:hover {
     transform: translateY(-2px);
 }
 
-button#send {
+.content button#send {
     background-color: #1565c0;
 }
 
-button#send:hover {
+.content button#send:hover {
     background-color: #0d47a1;
 }
 
-button#get {
+.content button#get {
     background-color: #00c62e;
 }
 
-button#get:hover {
+.content button#get:hover {
     background-color: #00af29;
 }

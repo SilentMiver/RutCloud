@@ -1,65 +1,31 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right top, #051937, #004d7a, #008793, #6610f2, #a8eb12); /* Градиентный фон */
-    color: #ffffff; /* Белый текст */
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-}
-
-h1 {
-    font-size: 48px;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Тень для заголовка */
-}
-
-p {
-    font-size: 24px;
+.content p {
+    font-size: 20px;
     margin-bottom: 20px;
 }
 
-a {
-    color: #00bf72; /* Зеленый цвет для ссылок */
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #008793; /* Темнее зеленый цвет при наведении на ссылку */
-}
-
-.button-container {
-    align-self: flex-start;
-    margin-top: auto; /* Размещение внизу */
-    margin-left: 20px; /* Отступ слева */
-}
-
-.return-button {
+.content button {
     padding: 15px 30px;
+    margin: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #1565c0; /* Голубой цвет для кнопки */
-    color: #ffffff; /* Белый текст */
-    font-size: 18px;
+    color: white;
+    font-size: 20px;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для кнопки */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.return-button:hover {
-    background-color: #0d47a1; /* Темнее голубой цвет при наведении на кнопку */
-    transform: translateY(-2px); /* Эффект поднятия при наведении */
+.content button:hover {
+    transform: translateY(-2px);
 }
 
-.return-button:focus {
-    outline: none; /* Убираем обводку при фокусе */
+.content button#return {
+    width: 350px;
+    background-color: #1565c0;
+}
+
+.content button#return:hover {
+    background-color: #0d47a1;
 }

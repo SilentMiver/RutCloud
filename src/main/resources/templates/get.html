@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/files.css">
-  <title>RutCloud | Получить</title>
+  <title>RutCloud | Получение</title>
 
+  <link rel="stylesheet" href="/css/body.css">
+  <link rel="stylesheet" href="/css/get.css">
+
+  <script src="/js/get.js"></script>
 </head>
+
 <body>
-<h1>RUT CLOUD-SHARE - Files</h1>
+<div class="container">
+  <div class="logo">
+    <img src="https://uprostim.com/wp-content/uploads/2021/04/image023-6.png" alt="RutCloud Logo">
+    <h1>RutCloud</h1>
+  </div>
 
-<p>Вы находитесь на странице с ожиданием файлов. Здесь вы можете просмотреть и загружать файлы.</p>
-
-<div class="button-container">
-  <button class="return-button" onclick="returnToMain()">Вернуться на главную</button>
+  <div class="content">
+    <p>Вы находитесь на странице с ожиданием файлов. Здесь вы можете просмотреть и загружать файлы.</p>
+    <button id="return" onclick="returnToMain()">Вернуться на главную</button>
+  </div>
 </div>
-
-<script>
-  function downloadFile() {
-    alert("Функциональность скачивания файлов будет добавлена здесь.");
-  }
-
-  function returnToMain() {
-    window.location.href = "/";
-  }
-</script>
-
 </body>
+
 </html>
