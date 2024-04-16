@@ -1,68 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
-	<meta charset="UTF-8">
-	<title>RUT CLOUD-SHARE</title>
-	<style>
-		body {
-			font-family: 'Arial', sans-serif;
-			background: linear-gradient(to right top, #051937, #004d7a, #008793, #6610f2, #a8eb12); /* Градиентный фон */
-			color: #ffffff; /* Белый текст */
-			margin: 0;
-			padding: 20px;
-			box-sizing: border-box;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100vh;
-			text-align: center;
-		}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <title>RutCloud</title>
 
-		h1 {
-			font-size: 48px;
-			margin-bottom: 30px;
-			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Тень для заголовка */
-		}
-
-		button {
-			padding: 15px 30px;
-			margin: 10px;
-			border: none;
-			border-radius: 5px;
-			background-color: #1565c0; /* Голубой цвет для кнопки */
-			color: #ffffff; /* Белый текст */
-			font-size: 18px;
-			font-weight: bold;
-			text-transform: uppercase;
-			cursor: pointer;
-			transition: background-color 0.3s ease, transform 0.2s ease;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для кнопки */
-		}
-
-		button:hover {
-			background-color: #0d47a1; /* Темнее голубой цвет при наведении на кнопку */
-			transform: translateY(-2px); /* Эффект поднятия при наведении */
-		}
-
-		button:focus {
-			outline: none; /* Убираем обводку при фокусе */
-		}
-	</style>
+    <script src="/js/index.js"></script>
 </head>
+
 <body>
-<h1>RUT CLOUD-SHARE</h1>
-
-<button onclick="openSelectorPage()">Отправить</button>
-<button onclick="openFilesPage()">Получить</button>
-
-<script>
-	function openFilesPage() {
-		window.location.href = "/get";
-	}
-	function openSelectorPage() {
-		window.location.href = "/session-select";
-	}
-</script>
-
+<div class="container">
+    <div>
+        <img src="https://uprostim.com/wp-content/uploads/2021/04/image023-6.png" alt="RutCloud Logo">
+        <h1>RutCloud</h1>
+    </div>
+    <div>
+        <button id="send" onclick="openSelectorPage()">Отправить</button>
+        <button id="get" onclick="openFilesPage()">Получить</button>
+    </div>
+</div>
 </body>
+
 </html>

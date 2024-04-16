@@ -1,0 +1,105 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right top, #051937, #004d7a, #008793, #6610f2, #a8eb12); /* Градиентный фон */
+    color: #ffffff; /* Белый текст */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Тень для заголовка */
+}
+
+table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    margin: 30px auto;
+    background-color: rgba(255, 255, 255, 0.1); /* Прозрачный белый фон для таблицы */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+th, td {
+    padding: 20px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Прозрачная линия под каждой строкой */
+}
+
+th {
+    background-color: #00bf72; /* Зеленый цвет фона заголовков столбцов */
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+td a {
+    color: #00bf72; /* Зеленый цвет для ссылок */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+td a:hover {
+    color: #008793; /* Темнее зеленый цвет при наведении на ссылку */
+}
+
+input[type="text"], input[type="file"], button {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    width: calc(100% - 30px);
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.2); /* Прозрачный белый фон для полей ввода и кнопок */
+    color: #ffffff; /* Белый текст */
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input[type="text"], input[type="file"] {
+    height: 60px;
+}
+
+button {
+    background-color: #1565c0; /* Голубой цвет для кнопки */
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #0d47a1; /* Темнее голубой цвет при наведении на кнопку */
+}
+
+button:focus {
+    outline: none; /* Убираем обводку при фокусе */
+}
+
+::-webkit-input-placeholder {
+    color: #ffffff; /* Цвет placeholder для WebKit браузеров */
+}
+
+:-moz-placeholder {
+    color: #ffffff; /* Цвет placeholder для Firefox 18- */
+}
+
+::-moz-placeholder {
+    color: #ffffff; /* Цвет placeholder для Firefox 19+ */
+}
+
+:-ms-input-placeholder {
+    color: #ffffff; /* Цвет placeholder для IE */
+}
