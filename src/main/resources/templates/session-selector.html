@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/files.css">
     <title>RutCloud | Выбор сессии</title>
 
+    <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <script src=""></script>
+</head>
+
 <body>
-<h1>RUT CLOUD-SHARE</h1>
+<div class="container">
+    <div class="logo">
+        <img src="https://uprostim.com/wp-content/uploads/2021/04/image023-6.png" alt="RutCloud Logo">
+        <h1>RutCloud</h1>
+    </div>
 
-<br>
-
-<form method="get" action="/files" enctype="multipart/form-data">
-    <input type="text" name="session" placeholder="Session ID" /> <!-- Идентификатор сеанса -->
-    <br>
-    <button type="submit">Upload</button>
-</form>
-
+    <div class="content">
+        <form method="get" action="/files" enctype="multipart/form-data">
+            <input type="text" name="session" placeholder="Session ID" /> <!-- Идентификатор сеанса -->
+            <button type="submit" id="upload">Upload</button>
+        </form>
+    </div>
+</div>
 </body>
+
 </html>
