@@ -1,136 +1,113 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right top, #051937, #004d7a, #008793, #6610f2, #a8eb12); /* Градиентный фон */
-    color: #fff;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-}
-
-h1 {
-    font-size: 48px;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Тень для заголовка */
+main {
+    display: inline-flex;
+    justify-content: space-between;
 }
 
 table {
-    width: 100%;
-    max-width: 800px;
+    width: 100vh;
+    height: 100%;
     border-collapse: collapse;
-    margin: 30px auto;
-    background-color: rgba(255, 255, 255, 0.1); /* Прозрачный белый фон для таблицы */
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    margin-right: 50px;
 }
 
 th, td {
     padding: 20px 15px;
     text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Прозрачная линия под каждой строкой */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 th {
-    background-color: #00bf72; /* Зеленый цвет фона заголовков столбцов */
-    color: #ffffff;
+    background-color: #00bf72;
+    color: white;
     text-transform: uppercase;
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-td a {
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
+.action-buttons {
+    display: inline-flex;
 }
 
-td a.download-link {
-    color: #00bf72; /* Зеленый цвет для ссылки "Download" */
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
-td a.delete-link {
-    color: #bf0000; /* Красный цвет для ссылки "Delete" */
-}
-
-td a:hover {
-    color: #008793; /* Темнее зеленый цвет при наведении на ссылку */
-}
-
-input[type="text"], input[type="file"], button {
+form input {
+    width: 300px;
     padding: 15px;
-    margin-bottom: 20px;
     border: none;
     border-radius: 5px;
-    width: calc(100% - 30px);
     box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.2); /* Прозрачный белый фон для полей ввода и кнопок */
-    color: #ffffff; /* Белый текст */
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
     font-size: 16px;
     transition: background-color 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
 }
 
-input[type="text"], input[type="file"] {
-    height: 60px;
+input:focus {
+    outline: none;
 }
 
-button {
-    background-color: #1565c0; /* Голубой цвет для кнопки */
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+::-webkit-input-placeholder {
+    color: white;
 }
 
-button:hover {
-    background-color: #0d47a1; /* Темнее голубой цвет при наведении на кнопку */
-}
 
-button:focus {
-    outline: none; /* Убираем обводку при фокусе */
-}
-
-/* Стили для кнопки Delete */
-.delete-button {
-    padding: 15px;
-    margin-left: 10px; /* Отступ слева от кнопки */
+form button#upload {
+    padding: 15px 30px;
     border: none;
     border-radius: 5px;
-    background-color: #bf0000; /* Красный цвет для кнопки "Delete" */
-    color: #ffffff; /* Белый текст */
-    font-size: 16px;
+    background-color: #1565c0;
+    color: white;
+    font-size: 20px;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.delete-button:hover {
-    background-color: #990000; /* Темнее красный цвет при наведении на кнопку */
-    transform: translateY(-2px); /* Эффект поднятия при наведении */
+form button#upload:hover {
+    transform: translateY(-2px);
+    background-color: #0d47a1;
 }
 
-.delete-button:focus {
-    outline: none; /* Убираем обводку при фокусе */
+button#download, button#delete {
+    width: 150px;
+    height: 50px;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-right: 25px;
 }
 
-::-webkit-input-placeholder {
-    color: #ffffff; /* Цвет placeholder для WebKit браузеров */
+button#download {
+    background-color: #00bf72;
 }
 
-:-moz-placeholder {
-    color: #ffffff; /* Цвет placeholder для Firefox 18- */
+button#delete {
+    background-color: #bf0000;
 }
 
-::-moz-placeholder {
-    color: #ffffff; /* Цвет placeholder для Firefox 19+ */
+button#download:hover {
+    background-color: #009157;
 }
 
-:-ms-input-placeholder {
-    color: #ffffff; /* Цвет placeholder для IE */
+button#delete:hover {
+    background-color: #910000;
 }

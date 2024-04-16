@@ -10,23 +10,3 @@ body {
     text-align: center;
     min-height: 100vh;
 }
-
-.container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.logo img {
-    width: 200px;
-    height: 200px;
-}
-
-.logo h1 {
-    position: relative;
-    font-size: 48px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    margin: 0;
-    bottom: 25px;
-}

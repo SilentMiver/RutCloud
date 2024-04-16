@@ -4,49 +4,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/files.css">
   <title>RutCloud | Файлы</title>
+
+  <link rel="stylesheet" href="/css/fragments/body.css">
+  <link rel="stylesheet" href="/css/fragments/header.css">
+  <link rel="stylesheet" href="/css/fragments/main.css">
+  <!----->
+  <link rel="stylesheet" href="/css/files.css">
+
+  <script src="/js/return.js"></script>
+  <!----->
+  <script src=""></script>
 </head>
 
 <body>
-<h1>RutCloud</h1>
+<header>
+  <div class="logo">
+    <img src="https://uprostim.com/wp-content/uploads/2021/04/image023-6.png" alt="RutCloud Logo">
+    <h1>RutCloud</h1>
+  </div>
+  <div class="return">
+    <button id="return" onclick="returnToMain()">Вернуться на главную</button>
+  </div>
+</header>
 
-<table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>File Name</th>
-    <th>Action</th>
-  </tr>
-  </thead>
+<main>
+  <div class="table">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>File Name</th>
+        <th>Action</th>
+      </tr>
+      </thead>
 
-  <tbody>
-  <tr th:each="file : ${files}">
-    <td th:text="${file.id}"></td>
-    <td th:text="${file.fileName}"></td>
-    <td>
-      <!-- Проверяем, имеет ли текущий сеанс доступ к файлу -->
-      <span>
-        <a th:href="@{'/api/files/' + ${file.id}} + '?session=' + ${session_number}" class="download-link">Download</a>
-      </span>
-      <!-- Кнопка Delete -->
-      <form method="post" th:action="@{'/api/files/delete/' + ${file.id}}">
-        <button type="submit" class="delete-button">Delete</button>
-      </form>
-    </td>
-  </tr>
-  </tbody>
-</table>
+      <tbody>
+      <tr th:each="file : ${files}">
+        <td th:text="${file.id}"></td>
+        <td th:text="${file.fileName}"></td>
+        <td>
+          <div class="action-buttons">
+            <form method="get" th:action="@{'/api/files/' + ${file.id}} + '?session=' + ${session_number}">
+              <button type="submit" id="download">Download</button>
+            </form>
+            <form method="post" th:action="@{'/api/files/delete/' + ${file.id}}">
+              <button type="submit" id="delete">Delete</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
-<form method="post" action="/api/files/upload" enctype="multipart/form-data">
-  <input type="file" name="fileData" placeholder="Choose File" /> <!-- Поле для загрузки файла -->
-  <br>
-  <input type="text" name="fileName" placeholder="File Name" /> <!-- Название файла -->
-  <br>
-  <input type="text" name="session" placeholder="Session ID" /> <!-- Идентификатор сеанса -->
-  <br>
-  <button type="submit">Upload</button>
-</form>
+  <div class="form">
+    <form method="post" action="/api/files/upload" enctype="multipart/form-data">
+      <input type="file" name="fileData" placeholder="Choose File" /> <!-- Поле для загрузки файла -->
+      <input type="text" name="fileName" placeholder="File Name" /> <!-- Название файла -->
+      <input type="text" name="session" placeholder="Session ID" /> <!-- Идентификатор сеанса -->
+      <button type="submit" id="upload">Upload</button>
+    </form>
+  </div>
+</main>
 </body>
 
 </html>

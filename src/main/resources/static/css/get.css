@@ -1,31 +1,4 @@
-.content p {
+p {
     font-size: 20px;
     margin-bottom: 20px;
-}
-
-.content button {
-    padding: 15px 30px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.content button:hover {
-    transform: translateY(-2px);
-}
-
-.content button#return {
-    width: 350px;
-    background-color: #1565c0;
-}
-
-.content button#return:hover {
-    background-color: #0d47a1;
 }

@@ -4,12 +4,11 @@ form {
     align-items: center;
 }
 
-.content input,
-button {
+input, button {
     height: 50px;
 }
 
-.content input {
+input {
     width: 300px;
     padding: 15px;
     border: none;
@@ -23,7 +22,7 @@ button {
     margin-bottom: 20px;
 }
 
-.content input:focus {
+input:focus {
     outline: none;
 }
 
@@ -31,7 +30,7 @@ button {
     color: white;
 }
 
-.content button {
+button {
     padding: 15px 30px;
     border: none;
     border-radius: 5px;
@@ -44,15 +43,15 @@ button {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.content button:hover {
+button:hover {
     transform: translateY(-2px);
 }
 
-.content button#upload {
+button#upload {
     width: 200px;
     background-color: #1565c0;
 }
 
-.content button#upload:hover {
+button#upload:hover {
     background-color: #0d47a1;
 }
