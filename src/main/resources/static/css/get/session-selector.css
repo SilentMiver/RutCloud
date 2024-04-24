@@ -41,17 +41,17 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-button:hover {
-    transform: translateY(-2px);
-}
+    &:hover {
+        transform: translateY(-2px);
+    }
 
-button#upload {
-    width: 200px;
-    background-color: #1565c0;
-}
+    &#upload {
+        width: 200px;
+        background-color: #1565c0;
+    }
 
-button#upload:hover {
-    background-color: #0d47a1;
+    &#upload:hover {
+        background-color: #0d47a1;
+    }
 }

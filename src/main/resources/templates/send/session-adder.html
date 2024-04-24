@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RutCloud | Создание сессии</title>
+
+    <link rel="stylesheet" href="/css/fragments/body.css">
+    <link rel="stylesheet" href="/css/fragments/header.css">
+    <link rel="stylesheet" href="/css/fragments/main.css">
+    <!----->
+    <link rel="stylesheet" href="/css/send/session-adder.css">
+
+    <script src="/js/return.js"></script>
+    <!----->
+    <script src="/js/session-adder.js"></script>
+</head>
+
+<body>
+<header>
+    <div class="logo">
+        <img src="https://uprostim.com/wp-content/uploads/2021/04/image023-6.png" alt="RutCloud Logo">
+        <h1>RutCloud</h1>
+    </div>
+    <div class="return">
+        <button id="return" onclick="returnToMain()">Вернуться на главную</button>
+    </div>
+</header>
+
+<main>
+    <button type="submit" id="create" onclick="createSession()">Создать сессию</button>
+</main>
+</body>
+
+</html>

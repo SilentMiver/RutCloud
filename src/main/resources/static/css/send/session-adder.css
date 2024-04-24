@@ -1,0 +1,21 @@
+button#create {
+    width: 300px;
+    height: 75px;
+
+    background-color: #1565c0;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        transform: translateY(-2px);
+        background-color: #0d47a1;
+    }
+}

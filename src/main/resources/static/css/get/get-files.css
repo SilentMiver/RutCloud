@@ -42,7 +42,7 @@ form {
     flex-direction: column;
 }
 
-form input {
+input {
     width: 300px;
     padding: 15px;
     border: none;
@@ -54,63 +54,46 @@ form input {
     transition: background-color 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
-}
 
-input:focus {
-    outline: none;
+    &:focus {
+        outline: none;
+    }
 }
 
 ::-webkit-input-placeholder {
     color: white;
 }
 
-form button#upload {
-    padding: 15px 30px;
+a {
     border: none;
     border-radius: 5px;
-    background-color: #1565c0;
     color: white;
-    font-size: 20px;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-form button#upload:hover {
-    transform: translateY(-2px);
-    background-color: #0d47a1;
-}
+    &#download {
+        width: 150px;
+        background-color: #00bf72;
+        text-align: center;
+        text-decoration: none;
+        padding: 15px;
+        font-size: 16px;
+        margin-right: 10px;
+    }
+    &#download:hover {
+        background-color: #009157;
+    }
 
-button#download, button#delete {
-    width: 150px;
-    height: 45px;
-    padding: 15px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-right: 10px;
-}
-
-button#download {
-    background-color: #00bf72;
-}
-
-button#delete {
-    background-color: #bf0000;
-}
-
-button#download:hover {
-    background-color: #009157;
-}
-
-button#delete:hover {
-    background-color: #910000;
+    &#upload {
+        background-color: #1565c0;
+        padding: 15px 30px;
+        font-size: 20px;
+    }
+    &#upload:hover {
+        transform: translateY(-2px);
+        background-color: #0d47a1;
+    }
 }

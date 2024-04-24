@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/css/fragments/header.css">
   <link rel="stylesheet" href="/css/fragments/main.css">
   <!----->
-  <link rel="stylesheet" href="/css/files.css">
+  <link rel="stylesheet" href="/css/send/send-files.css">
 
   <script src="/js/return.js"></script>
   <!----->
@@ -33,23 +33,18 @@
     <table>
       <thead>
       <tr>
-        <th>ID</th>
-        <th>File Name</th>
-        <th>Action</th>
+        <th>Название файла</th>
+        <th>Действия</th>
       </tr>
       </thead>
 
       <tbody>
       <tr th:each="file : ${files}">
-        <td th:text="${file.id}"></td>
         <td th:text="${file.fileName}"></td>
         <td>
           <div class="action-buttons">
-            <form method="get" th:action="@{'/api/files/' + ${file.id}} + '?session=' + ${session_number}">
-              <button type="submit" id="download">Download</button>
-            </form>
             <form method="post" th:action="@{'/api/files/delete/' + ${file.id}}">
-              <button type="submit" id="delete">Delete</button>
+              <button type="submit" id="delete">Удалить</button>
             </form>
           </div>
         </td>
@@ -60,10 +55,13 @@
 
   <div class="form">
     <form method="post" action="/api/files/upload" enctype="multipart/form-data">
-      <input type="file" name="fileData" placeholder="Choose File" /> <!-- Поле для загрузки файла -->
-      <input type="text" name="fileName" placeholder="File Name" /> <!-- Название файла -->
-      <input type="text" name="session" placeholder="Session ID" /> <!-- Идентификатор сеанса -->
-      <button type="submit" id="upload">Upload</button>
+      <input type="file" id="fileData" name="fileData" placeholder="Choose File" /> <!-- Поле для загрузки файла -->
+      <input type="text" id="fileName" name="fileName" placeholder="File Name" /> <!-- Название файла -->
+      <p>
+        ID сессии:
+      </p>
+      <input type="text" id="sessionId" name="session" readonly th:value="${session_number}" /> <!-- Текстовое поле для отображения ID сессии -->
+      <button type="submit" id="upload">Загрузить</button>
     </form>
   </div>
 </main>

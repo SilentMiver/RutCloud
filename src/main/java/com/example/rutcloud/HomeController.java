@@ -19,22 +19,30 @@ public class HomeController {
         model.addAttribute("files", fileEntityRepository.findAll());
         return "index";
     }
-    @GetMapping("/session-select")
-    public String select(Model model) {
-        return "session-selector";
+
+    @GetMapping("/session-add")
+    public String add() {
+        return "send/session-adder";
     }
-    @GetMapping("/files")
-    public String files(Model model, @RequestParam Long session) {
+
+    @GetMapping("/session-select")
+    public String select() {
+        return "get/session-selector";
+    }
+
+    @GetMapping("/send-files")
+    public String sendFiles(Model model, @RequestParam Long session) {
         model.addAttribute("session", session);
         model.addAttribute("session_number", session);
         model.addAttribute("files", fileEntityRepository.findAllBySessionId(session));
-        return "files";
+        return "send/send-files";
     }
 
-
-    @GetMapping("/get")
-    public String get() {
-        return "get";
+    @GetMapping("/get-files")
+    public String getFiles(Model model, @RequestParam Long session) {
+        model.addAttribute("session", session);
+        model.addAttribute("session_number", session);
+        model.addAttribute("files", fileEntityRepository.findAllBySessionId(session));
+        return "get/get-files";
     }
-
 }

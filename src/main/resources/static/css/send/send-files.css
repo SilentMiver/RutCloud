@@ -1,0 +1,106 @@
+main {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+table {
+    width: 100vh;
+    height: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    margin-right: 50px;
+}
+
+th, td {
+    padding: 20px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+th {
+    background-color: #00bf72;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+td {
+    font-size: 20px;
+}
+
+.action-buttons {
+    display: inline-flex;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    text-align: left;
+}
+
+input {
+    width: 300px;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+
+    &:focus {
+        outline: none;
+    }
+
+    &#fileName {
+        margin-bottom: 0px;
+    }
+}
+
+::-webkit-input-placeholder {
+    color: white;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    &#delete {
+        background-color: #bf0000;
+        width: 150px;
+        height: 45px;
+        padding: 15px;
+        font-size: 16px;
+        margin-right: 10px;
+    }
+    &#delete:hover {
+        background-color: #910000;
+    }
+
+    &#upload {
+        background-color: #1565c0;
+        padding: 15px 30px;
+        font-size: 20px;
+    }
+    &#upload:hover {
+        transform: translateY(-2px);
+        background-color: #0d47a1;
+    }
+}

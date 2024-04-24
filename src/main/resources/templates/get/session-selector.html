@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/fragments/header.css">
     <link rel="stylesheet" href="/css/fragments/main.css">
     <!----->
-    <link rel="stylesheet" href="/css/session-selector.css">
+    <link rel="stylesheet" href="/css/get/session-selector.css">
 
     <script src="/js/return.js"></script>
     <!----->
@@ -29,9 +29,9 @@
 </header>
 
 <main>
-    <form method="get" action="/files" enctype="multipart/form-data">
+    <form method="get" action="/get-files" enctype="multipart/form-data">
         <input type="text" name="session" placeholder="Session ID" /> <!-- Идентификатор сеанса -->
-        <button type="submit" id="upload">Upload</button>
+        <button type="submit" id="upload">Выбрать</button>
     </form>
 </main>
 </body>

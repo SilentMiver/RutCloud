@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RutCloud | Файлы</title>
+
+  <link rel="stylesheet" href="/css/fragments/body.css">
+  <link rel="stylesheet" href="/css/fragments/header.css">
+  <link rel="stylesheet" href="/css/fragments/main.css">
+  <!----->
+  <link rel="stylesheet" href="/css/get/get-files.css">
+
+  <script src="/js/return.js"></script>
+  <!----->
+  <script src=""></script>
+</head>
+
+<body>
+<header>
+  <div class="logo">
+    <img src="https://uprostim.com/wp-content/uploads/2021/04/image023-6.png" alt="RutCloud Logo">
+    <h1>RutCloud</h1>
+  </div>
+  <div class="return">
+    <button id="return" onclick="returnToMain()">Вернуться на главную</button>
+  </div>
+</header>
+
+<main>
+  <div class="table">
+    <table>
+      <thead>
+      <tr>
+        <th>Название файла</th>
+        <th>Действия</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr th:each="file : ${files}">
+        <td th:text="${file.fileName}"></td>
+        <td>
+          <div class="action-buttons">
+            <a id="download" th:href="@{'/api/files/' + ${file.id} + '?session=' + ${session_number}}">
+              Скачать
+            </a>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+
+</html>
