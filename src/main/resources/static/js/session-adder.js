@@ -9,7 +9,7 @@ function createSession() {
             throw new Error('Failed to create session');
         })
         .then(data => {
-            window.location.href = '/send-files?session=' + data.id;
+            window.location.href = '/get-files?session=' + data.id;
         })
         .catch(error => {
             console.error('Error creating session:', error);

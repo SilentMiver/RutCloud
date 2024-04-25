@@ -29,8 +29,8 @@
 </header>
 
 <main>
-    <form method="get" action="/get-files" enctype="multipart/form-data">
-        <input type="text" name="session" placeholder="Session ID" /> <!-- Идентификатор сеанса -->
+    <form method="get" action="/send-files" enctype="multipart/form-data">
+        <input type="text" name="session" id="sessionIdInput" placeholder="Session ID" required/> <!-- Идентификатор сеанса -->
         <button type="submit" id="upload">Выбрать</button>
     </form>
 </main>

@@ -14,7 +14,7 @@
 
   <script src="/js/return.js"></script>
   <!----->
-  <script src=""></script>
+  <script src="/js/deleteSession.js"></script>
 </head>
 
 <body>
@@ -51,6 +51,14 @@
       </tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="form">
+      <p>
+        ID сессии:
+      </p>
+      <input type="text" id="sessionId" name="session" readonly th:value="${session_number}" />
+      <button type="submit" id="deleteSession" onclick="deleteSessionAndRedirect()">Удалить сессию</button>
   </div>
 </main>
 </body>

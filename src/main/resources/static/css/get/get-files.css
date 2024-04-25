@@ -37,7 +37,7 @@ td {
 }
 
 
-form {
+.form {
     display: flex;
     flex-direction: column;
 }
@@ -58,6 +58,10 @@ input {
     &:focus {
         outline: none;
     }
+}
+
+p {
+    text-align: left;
 }
 
 ::-webkit-input-placeholder {
@@ -86,14 +90,25 @@ a {
     &#download:hover {
         background-color: #009157;
     }
+}
 
-    &#upload {
-        background-color: #1565c0;
+button {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    &#deleteSession {
+        background-color: #bf0000;
         padding: 15px 30px;
         font-size: 20px;
     }
-    &#upload:hover {
+    &#deleteSession:hover {
         transform: translateY(-2px);
-        background-color: #0d47a1;
+        background-color: #910000;
     }
 }

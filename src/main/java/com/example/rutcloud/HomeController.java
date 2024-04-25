@@ -22,12 +22,12 @@ public class HomeController {
 
     @GetMapping("/session-add")
     public String add() {
-        return "send/session-adder";
+        return "get/session-adder";
     }
 
     @GetMapping("/session-select")
     public String select() {
-        return "get/session-selector";
+        return "send/session-selector";
     }
 
     @GetMapping("/send-files")
