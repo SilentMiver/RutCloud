@@ -5,6 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,6 +52,14 @@ public class SessionRestController {
     public ResponseEntity<Void> deleteSession(@PathVariable Long id) {
         if (!sessionRepository.existsById(id)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        String qrCodeFileName = "qr-code-" + id + ".png";
+        Path path = FileSystems.getDefault().getPath(qrCodeFileName);
+        try {
+            Files.deleteIfExists(path);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         sessionRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
