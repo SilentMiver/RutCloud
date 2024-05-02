@@ -28,6 +28,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-validation'
     testImplementation 'com.h2database:h2' // H2 Database для интеграционного тестирования
 
+    implementation 'com.google.zxing:core:3.5.1'
+    implementation 'com.google.zxing:javase:3.5.1'
+
     tasks.named('test') {
         useJUnitPlatform()
     }

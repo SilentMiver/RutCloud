@@ -43,6 +43,10 @@ public class HomeController {
         model.addAttribute("session", session);
         model.addAttribute("session_number", session);
         model.addAttribute("files", fileEntityRepository.findAllBySessionId(session));
+
+        String qrCodeBase64 = QRCodeGenerator.getQRCodeBase64("http://localhost:8090/send-files?session=" + session, 200, 200);
+        model.addAttribute("qrCodeBase64", qrCodeBase64);
+
         return "get/get-files";
     }
 }
