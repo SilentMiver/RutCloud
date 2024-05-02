@@ -1,0 +1,32 @@
+/* Стили для содержимого модального окна внутри #myModal */
+#myModal .modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+}
+
+/* Стили для кнопки закрытия внутри модального окна */
+#myModal .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#myModal .close:hover,
+#myModal .close:focus {
+  color: black;
+  text-decoration: none;
+}
+
+/* Стили для контейнера QR-кода */
+.qr-code-container {
+  display: none;
+  text-align: center;
+}
+
