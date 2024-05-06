@@ -29,9 +29,8 @@
 </header>
 
 <main>
-  <div>
-    <img th:src="@{'/qr-codes/' + ${qrCodeFileName}}" alt="QR Code" />
-  </div>
+  <img th:src="@{'/qr-codes/' + ${qrCodeFileName}}" alt="QR Code" id="qr-code"/>
+
   <div class="table">
     <table>
       <thead>

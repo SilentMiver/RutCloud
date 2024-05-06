@@ -10,13 +10,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/api/files")
 public class FileEntityRestController {
 
@@ -106,20 +107,20 @@ public class FileEntityRestController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestParam("fileData") MultipartFile file,
+    public String uploadFile(@RequestParam("fileData") MultipartFile file,
                                              @RequestParam("fileName") String fileName,
                                              @RequestParam("session") Long sessionId) {
 
         // Проверяем существование указанной сессии через SessionRestController
         ResponseEntity<Session> sessionResponse = sessionRestController.getSessionById(sessionId);
         if (sessionResponse.getStatusCode() != HttpStatus.OK) {
-            return new ResponseEntity<>("Invalid session ID", HttpStatus.UNAUTHORIZED);
+            return "";
         }
 
         // Продолжаем с загрузкой файла
         try {
             if (file.isEmpty()) {
-                return new ResponseEntity<>("File is empty", HttpStatus.BAD_REQUEST);
+                return "Empty";
             }
 
             byte[] fileData = file.getBytes();
@@ -131,10 +132,10 @@ public class FileEntityRestController {
 
             fileEntityRepository.save(fileEntity);
 
-            return new ResponseEntity<>("File uploaded successfully", HttpStatus.OK);
+            return "redirect:/send-files?session=" + sessionId;
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>("Failed to upload file", HttpStatus.INTERNAL_SERVER_ERROR);
+            return "failed to upload";
         }
     }
 }

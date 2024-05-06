@@ -64,7 +64,7 @@ public class HomeController {
 
         String qrCodeFileName = "qr-code-" + session + ".png";
         try {
-            byte[] qrCodeImage = QRCodeGenerator.generateQRCodeImage("http://localhost:8080/send-files?session=" + session, 200, 200);
+            byte[] qrCodeImage = QRCodeGenerator.generateQRCodeImage("http://10.245.69.230 :8090/send-files?session=" + session, 200, 200);
             QRCodeGenerator.saveQRCodeToFile(qrCodeImage, qrCodeFileName);
             model.addAttribute("qrCodeFileName", qrCodeFileName);
         } catch (Exception e) {
